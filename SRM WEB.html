@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>SRM - Social Republic of Midashes</title>
+
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
+
+
+    <style>
+
+        *{
+
+            margin:0;
+
+            padding:0;
+
+            box-sizing:border-box;
+
+            scroll-behavior:smooth;
+
+        }
+
+
+
+        body{
+
+            font-family:'Orbitron', sans-serif;
+
+            background:#071224;
+
+            color:white;
+
+            overflow-x:hidden;
+
+        }
+
+
+
+        /* NAVBAR */
+
+        nav{
+
+            width:100%;
+
+            position:fixed;
+
+            top:0;
+
+            left:0;
+
+            padding:20px 50px;
+
+            display:flex;
+
+            justify-content:space-between;
+
+            align-items:center;
+
+            background:rgba(0,0,0,0.35);
+
+            backdrop-filter:blur(10px);
+
+            z-index:1000;
+
+            border-bottom:1px solid rgba(255,255,255,0.1);
+
+        }
+
+
+
+        nav h1{
+
+            color:#7ec8ff;
+
+            font-size:28px;
+
+            font-weight:900;
+
+        }
+
+
+
+        nav ul{
+
+            display:flex;
+
+            list-style:none;
+
+            gap:30px;
+
+        }
+
+
+
+        nav a{
+
+            text-decoration:none;
+
+            color:white;
+
+            transition:0.3s;
+
+            cursor: pointer;
+
+        }
+
+
+
+        nav a:hover{
+
+            color:#7ec8ff;
+
+        }
+
+        .lang-switch{
+
+            display:flex;
+
+            align-items:center;
+
+            gap:10px;
+
+            color:#d7e9ff;
+
+            font-size:14px;
+
+        }
+
+        .lang-switch label{
+
+            white-space:nowrap;
+
+        }
+
+        .lang-switch select{
+
+            background:rgba(255,255,255,0.08);
+
+            color:white;
+
+            border:1px solid rgba(255,255,255,0.2);
+
+            border-radius:8px;
+
+            padding:6px 10px;
+
+            font-family:'Orbitron', sans-serif;
+
+            font-size:12px;
+
+            cursor:pointer;
+
+        }
+
+        .lang-switch select:focus{
+
+            outline:2px solid #7ec8ff;
+
+            outline-offset:2px;
+
+        }
+
+
+
+        /* HERO */
+
+        .hero{
+
+            min-height:100vh;
+
+            display:flex;
+
+            justify-content:center;
+
+            align-items:center;
+
+            flex-direction:column;
+
+            text-align:center;
+
+            padding:120px 20px 50px;
+
+            position:relative;
+
+        }
+
+
+
+        .hero::before{
+
+            content:'';
+
+            position:absolute;
+
+            inset:0;
+
+            background:radial-gradient(circle at top,#1e4d8f 0%, #071224 70%);
+
+            z-index:-1;
+
+        }
+
+
+
+        .hero img{
+
+            width:500px;
+
+            max-width:90%;
+
+            border-radius:20px;
+
+            box-shadow:0 0 40px rgba(126,200,255,0.5);
+
+            animation:float 4s ease-in-out infinite;
+
+        }
+
+
+
+        .hero h2{
+
+            margin-top:40px;
+
+            font-size:60px;
+
+            color:#7ec8ff;
+
+        }
+
+
+
+        .hero p{
+
+            margin-top:20px;
+
+            max-width:800px;
+
+            line-height:1.8;
+
+            color:#d7e9ff;
+
+            font-size:18px;
+
+        }
+
+
+
+        @keyframes float{
+
+            0%{transform:translateY(0px);}
+
+            50%{transform:translateY(-15px);}
+
+            100%{transform:translateY(0px);}
+
+        }
+
+
+
+        /* SECTION */
+
+        section{
+
+            padding:120px 10%;
+
+        }
+
+
+
+        .section-title{
+
+            text-align:center;
+
+            font-size:50px;
+
+            color:#7ec8ff;
+
+            margin-bottom:80px;
+
+        }
+
+
+
+        /* RANK CARDS */
+
+        .rank-grid{
+
+            display:grid;
+
+            grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+
+            gap:40px;
+
+        }
+
+
+
+        .rank-card{
+
+            background:rgba(255,255,255,0.05);
+
+            border:1px solid rgba(255,255,255,0.1);
+
+            border-radius:25px;
+
+            overflow:hidden;
+
+            transition:0.4s;
+
+            opacity:0;
+
+            transform:translateY(50px);
+
+        }
+
+
+
+        .rank-card.show{
+
+            opacity:1;
+
+            transform:translateY(0);
+
+        }
+
+
+
+        .rank-card:hover{
+
+            transform:translateY(-10px) scale(1.02);
+
+            box-shadow:0 0 30px rgba(126,200,255,0.4);
+
+        }
+
+
+
+        .rank-card img{
+
+            width:100%;
+
+            height:280px;
+
+            object-fit:cover;
+
+        }
+
+
+
+        .rank-content{
+
+            padding:30px;
+
+        }
+
+
+
+        .rank-content h3{
+
+            color:#7ec8ff;
+
+            margin-bottom:20px;
+
+            font-size:28px;
+
+        }
+
+
+
+        .rank-content p{
+
+            color:#d8e6ff;
+
+            line-height:1.8;
+
+            font-size:15px;
+
+        }
+
+
+
+        /* ABOUT & PROMOTION */
+
+        .about{
+
+            background:linear-gradient(180deg,#081a33,#0b2345);
+
+            border-top:1px solid rgba(255,255,255,0.1);
+
+            border-bottom:1px solid rgba(255,255,255,0.1);
+
+        }
+
+
+
+        .about-box{
+
+            max-width:1000px;
+
+            margin:auto;
+
+            text-align:center;
+
+        }
+
+
+
+        .about-box p{
+
+            margin-top:30px;
+
+            line-height:2;
+
+            color:#dbeaff;
+
+            font-size:18px;
+
+        }
+
+
+
+        /* FOOTER */
+
+        footer{
+
+            text-align:center;
+
+            padding:60px 40px;
+
+            background:#050c17;
+
+            color:#7ec8ff;
+
+        }
+
+
+
+        .support-link {
+
+            display: block;
+
+            margin-top: 15px;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            font-size: 1.1rem;
+
+            transition: 0.3s;
+
+        }
+
+
+
+        .support-link:hover {
+
+            color: #7ec8ff;
+
+            text-shadow: 0 0 10px rgba(126,200,255,0.8);
+
+        }
+
+
+
+        /* SCROLL ANIMATION */
+
+        .hidden{
+
+            opacity:0;
+
+            transform:translateY(60px);
+
+            transition:all 1s ease;
+
+        }
+
+
+
+        .show{
+
+            opacity:1;
+
+            transform:translateY(0);
+
+        }
+
+
+
+        /* OWNER SECTION RED THEME */
+
+        #owner-secret {
+
+            display: none; /* Hidden by default */
+
+            text-align: center;
+
+            background: #ff0000; /* Red Background */
+
+            color: #ffffff; /* White Text */
+
+            padding: 120px 10%;
+
+            border-top: 5px solid #ffffff;
+
+        }
+
+
+
+        #owner-secret h1 {
+
+            font-size: 50px;
+
+            color: #ffffff;
+
+            margin-bottom: 30px;
+
+        }
+
+
+
+        /* MOBILE */
+
+        @media(max-width:768px){
+
+            nav{
+
+                padding:20px;
+
+                flex-direction:column;
+
+                gap:20px;
+
+            }
+
+            nav ul{
+
+                gap:15px;
+
+                flex-wrap:wrap;
+
+                justify-content:center;
+
+            }
+
+            .lang-switch{
+
+                width:100%;
+
+                justify-content:center;
+
+            }
+
+            .hero h2{ font-size:40px; }
+
+            .section-title{ font-size:36px; }
+
+        }
+
+    </style>
+
+</head>
+
+
+
+<body>
+
+
+
+<nav>
+
+    <h1>SRM</h1>
+
+    <ul>
+
+        <li><a href="#home" data-i18n="nav.home">Home</a></li>
+
+        <li><a href="#ranks" data-i18n="nav.ranks">Ranks</a></li>
+
+        <li><a href="#stats" data-i18n="nav.records">Records</a></li>
+
+        <li><a href="#about" data-i18n="nav.about">About</a></li>
+
+        <li><a href="#contact" data-i18n="nav.support">Support</a></li>
+
+
+    </ul>
+
+    <div class="lang-switch">
+
+        <label for="language-select" data-i18n="language.label">Language</label>
+
+        <select id="language-select" data-i18n-aria-label="language.ariaLabel">
+
+            <option value="en" data-i18n="language.english" style="background-color: white; color: black;">English</option>
+
+            <option value="ru" data-i18n="language.russian" style="background-color: white; color: black;">Russian</option>
+
+            <option value="de" data-i18n="language.german" style="background-color: white; color: black;">German</option>
+
+            <option value="hy" data-i18n="language.armenian" style="background-color: white; color: black;">Armenian</option>
+
+            <option value="sr" data-i18n="Serbian" style="background-color: white; color: black;">Srpski (Serbian)</option>
+
+            <option value="es" data-i18n="language.spanish" style="background-color: white; color: black;">Español (Spanish)</option>
+
+            <option value="fr" data-i18n="language.french" style="background-color: white; color: black;">Français (French)</option>
+
+            <option value="pt" data-i18n="language.portuguese" style="background-color: white; color: black;">Português (Portuguese)</option>
+
+            <option value="it" data-i18n="language.italian" style="background-color: white; color: black;">Italiano (Italian)</option>
+
+        </select>
+
+    </div>
+
+</nav>
+
+
+
+<section class="hero" id="home">
+
+    <img src="SRM.png" alt="SRM Flag" data-i18n-alt="hero.flagAlt">
+
+    <h2 data-i18n="hero.title">Social Republic of Midashes</h2>
+
+    <p data-i18n="hero.description">
+
+        The SRM is a structured civilization built on loyalty, discipline,
+
+        authority, and the honor of armor ranks.
+
+        Every citizen rises through strength, trust, and responsibility.
+
+    </p>
+
+</section>
+
+
+
+<section id="ranks">
+
+    <h2 class="section-title hidden" data-i18n="ranks.title">SRM Rank System</h2>
+
+    <div class="rank-grid">
+
+        <div class="rank-card hidden">
+
+            <img src="quartz trim.jpg" alt="Quartz" data-i18n-alt="ranks.quartz.alt">
+
+            <div class="rank-content">
+
+                <h3 data-i18n="ranks.quartz.title">Quartz Trim</h3>
+
+                <p data-i18n="ranks.quartz.description">Highest authority inside the SRM. Can control every rank except other Quartz members.</p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="rank-card hidden">
+
+            <img src="Dimaond trim.webp" alt="Diamond Trim" data-i18n-alt="ranks.diamondTrim.alt">
+
+            <div class="rank-content">
+
+                <h3 data-i18n="ranks.diamondTrim.title">Diamond Trim</h3>
+
+                <p data-i18n="ranks.diamondTrim.description">Command all ranks below them up to Iron Trim.</p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="rank-card hidden">
+
+            <img src="quartz trim.jpg" alt="Iron Trim" data-i18n-alt="ranks.ironTrim.alt">
+
+            <div class="rank-content">
+
+                <h3 data-i18n="ranks.ironTrim.title">Iron Trim</h3>
+
+                <p data-i18n="ranks.ironTrim.description">Iron Trim members command ranks below Iron.</p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="rank-card hidden">
+
+            <img src="netherite.jpg" alt="Netherite" data-i18n-alt="ranks.netherite.alt">
+
+            <div class="rank-content">
+
+                <h3 data-i18n="ranks.netherite.title">Netherite Armor</h3>
+
+                <p data-i18n="ranks.netherite.description">Netherite soldiers can only command Diamond Armor citizens.</p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="rank-card hidden">
+
+            <img src="diamond.jpg" alt="Diamond" data-i18n-alt="ranks.diamondArmor.alt">
+
+            <div class="rank-content">
+
+                <h3 data-i18n="ranks.diamondArmor.title">Diamond Armor</h3>
+
+                <p data-i18n="ranks.diamondArmor.description">The newest citizens of the SRM at the start of their journey.</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<section id="stats">
+
+    <h2 class="section-title hidden" data-i18n="records.title">Republic Records</h2>
+
+    <div class="rank-grid">
+
+        <div class="rank-card hidden">
+
+            <div class="rank-content">
+
+                <h3 data-i18n="records.base.title">The base of the SRM</h3>
+
+                <p data-i18n-html="records.base.list">
+
+                    1. VPistheking<br>
+
+                    2. Mikewillgetyou<br>
+
+                    3. MrRudolfB<br>
+
+                    4. Mvy864<br>
+
+                    5. Levon1111
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="rank-card hidden">
+
+            <div class="rank-content">
+
+                <h3 data-i18n="records.pvp.title">PvP Rankings (from the base)</h3>
+
+                <p data-i18n-html="records.pvp.list">
+
+                    1. Mvy864<br>
+
+                    2. Mikewillgetyou<br>
+
+                    3. VPistheking<br>
+
+                    4. MrRudolfB<br>
+
+                    5. Levon1111
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="rank-card hidden">
+
+            <div class="rank-content">
+
+                <h3 data-i18n="records.redstone.title">Redstone Rankings (from the base)</h3>
+
+                <p data-i18n-html="records.redstone.list">
+
+                    1. VPistheking<br>
+
+                    2. Mvy864<br>
+
+                    3. Mikewillgetyou<br>
+
+                    4. Levon1111<br>
+
+                    5. MrRudolfB
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="rank-card hidden">
+
+            <div class="rank-content">
+
+                <h3 data-i18n="records.leadership.title">Leadership</h3>
+
+                <p data-i18n-html="records.leadership.list">
+
+                    1. (imperator) Presidents- VPistheking and Mikewillgetyou<br>
+
+                    2. (vice imperator) Vice Presidents- Levon1111<br>
+
+                    3. commander- Mikewillgetyou<br>
+
+                    4. Law enforcement- VPistheking-95% Mikewillgetyou-5%
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="rank-card hidden">
+
+            <div class="rank-content">
+
+                <h3 data-i18n="records.resources.title">Resource Collectors (from the base)</h3>
+
+                <p data-i18n-html="records.resources.list">
+
+                    1. VPistheking and Mikewillgetyou<br>
+
+                    2. VPistheking and Mikewillgetyou<br>
+
+                    3. Levon1111<br>
+
+                    4. Mvy864<br>
+
+                    5. MrRudolfB
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<section class="about" id="rank-up" style="background: linear-gradient(180deg, #0b2345, #071224);">
+
+    <div class="about-box hidden">
+
+        <h2 class="section-title" data-i18n="promotion.title">Promotion Protocol</h2>
+
+        <p style="font-size: 24px; color: #7ec8ff; font-weight: bold; text-transform: uppercase; letter-spacing: 2px;" data-i18n="promotion.description">
+
+            For a rank up, go to one of the Imperators.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<section class="about" id="requirements-to-enter" style="background: linear-gradient(180deg, #0b2345, #071224);">
+
+    <div class="about-box hidden">
+
+        <h2 class="section-title" data-i18n="requirements.title">Requirements to Enter the Server</h2>
+
+        <p style="font-size: 24px; color: #7ec8ff; font-weight: bold; text-transform: uppercase; letter-spacing: 2px;" data-i18n="requirements.description">
+
+            To enter our koingdom you need to be able to win in PvP president (Mikewillgetyou) after this you need to come the other president (VPistheking) and send to him the screenshot of victory by discord, so he can understean should he give you the place in our kingdom or no and he might ask a couple of questions.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<section class="about" id="about">
+
+    <div class="about-box hidden">
+
+        <h2 class="section-title" data-i18n="about.title">About SRM</h2>
+
+        <p data-i18n="about.description">
+
+            The Social Republic of Midashes represents order,
+
+            unity, progression, and power. Every rank carries responsibility.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<section class="about" id="join-us" style="background: linear-gradient(180deg, #0b2345, #071224);">
+
+    <div class="about-box hidden">
+
+        <h2 class="section-title" data-i18n="join.title">Join Us</h2>
+
+        <p style="font-size: 24px; color: #7ec8ff; font-weight: bold; text-transform: uppercase; letter-spacing: 2px;" data-i18n="join.description">
+
+            Join the SRM and rise through the ranks by proving your strength, loyalty, and dedication to our republic
+
+            Name: Social Republic of Midashes(SRM) and the server is public so you can find it by searching.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<footer id="contact">
+
+    <p data-i18n="footer.copyright">© Social Republic of Midashes | SRM</p>
+
+    <p style="margin-top: 20px; font-size: 0.9rem; color: #d7e9ff;" data-i18n="footer.help">Need assistance or have inquiries?</p>
+
+    <a href="mailto:papikyanvahagn666@gmail.com" class="support-link" data-i18n="footer.contact">Contact Support: papikyanvahagn666@gmail.com or badasyan.mike4@gmail.com</a>
+
+</footer>
+
+
+
+<script>
+
+    /** @typedef {Record<string, string>} Translation */
+
+    /** @type {Record<string, Translation>} */
+    const translations = {
+        en: {
+            "meta.title": "SRM - Social Republic of Midashes",
+            "language.label": "Language",
+            "language.ariaLabel": "Language selector",
+            "language.english": "English",
+            "language.russian": "Russian",
+            "language.german": "German",
+            "language.armenian": "Armenian",
+            "language.spanish": "Español (Spanish)",
+            "language.french": "Français (French)",
+            "language.portuguese": "Português (Portuguese)",
+            "language.italian": "Italiano (Italian)",
+            "nav.home": "Home",
+            "nav.ranks": "Ranks",
+            "nav.records": "Records",
+            "nav.about": "About",
+            "nav.support": "Support",
+            "hero.flagAlt": "SRM Flag",
+            "hero.title": "Social Republic of Midashes",
+            "hero.description": "The SRM is a structured civilization built on loyalty, discipline, authority, and the honor of armor ranks. Every citizen rises through strength, trust, and responsibility.",
+            "ranks.title": "SRM Rank System",
+            "ranks.quartz.alt": "Quartz",
+            "ranks.quartz.title": "Quartz Trim",
+            "ranks.quartz.description": "Highest authority inside the SRM. Can control every rank except other Quartz members.",
+            "ranks.diamondTrim.alt": "Diamond Trim",
+            "ranks.diamondTrim.title": "Diamond Trim",
+            "ranks.diamondTrim.description": "Command all ranks below them up to Iron Trim.",
+            "ranks.ironTrim.alt": "Iron Trim",
+            "ranks.ironTrim.title": "Iron Trim",
+            "ranks.ironTrim.description": "Iron Trim members command ranks below Iron.",
+            "ranks.netherite.alt": "Netherite",
+            "ranks.netherite.title": "Netherite Armor",
+            "ranks.netherite.description": "Netherite soldiers can only command Diamond Armor citizens.",
+            "ranks.diamondArmor.alt": "Diamond",
+            "ranks.diamondArmor.title": "Diamond Armor",
+            "ranks.diamondArmor.description": "The newest citizens of the SRM at the start of their journey.",
+            "records.title": "Republic Records",
+            "records.base.title": "The base of the SRM",
+            "records.base.list": "1. VPistheking<br>2. Mikewillgetyou<br>3. MrRudolfB<br>4. Mvy864<br>5. Levon1111",
+            "records.pvp.title": "PvP Rankings (from the base)",
+            "records.pvp.list": "1. Mvy864<br>2. Mikewillgetyou<br>3. VPistheking<br>4. MrRudolfB<br>5. Levon1111",
+            "records.redstone.title": "Redstone Rankings (from the base)",
+            "records.redstone.list": "1. VPistheking<br>2. Mvy864<br>3. Mikewillgetyou<br>4. Levon1111<br>5. MrRudolfB",
+            "records.leadership.title": "Leadership",
+            "records.leadership.list": "1. (imperator) Presidents- VPistheking and Mikewillgetyou<br>2. (vice imperator) Vice Presidents- Levon1111<br>3. commander- Mikewillgetyou<br>4. Law enforcement- VPistheking-95% Mikewillgetyou-5%",
+            "records.resources.title": "Resource Collectors (from the base)",
+            "records.resources.list": "1. VPistheking and Mikewillgetyou<br>2. VPistheking and Mikewillgetyou<br>3. Levon1111<br>4. Mvy864<br>5. MrRudolfB",
+            "promotion.title": "Promotion Protocol",
+            "promotion.description": "For a rank up, go to one of the Imperators.",
+            "requirements.title": "Requirements to Enter the Server",
+            "requirements.description": "To enter our koingdom you need to be able to win in PvP president (Mikewillgetyou) after this you need to come the other president (VPistheking) and send to him the screenshot of victory by discord, so he can understean should he give you the place in our kingdom or no and he might ask a couple of questions.",
+            "about.title": "About SRM",
+            "about.description": "The Social Republic of Midashes represents order, unity, progression, and power. Every rank carries responsibility.",
+            "join.title": "Join Us",
+            "join.description": "Join the SRM and rise through the ranks by proving your strength, loyalty, and dedication to our republic Name: Social Republic of Midashes(SRM) and the server is public so you can find it by searching.",
+            "footer.copyright": "© Social Republic of Midashes | SRM",
+            "footer.help": "Need assistance or have inquiries?",
+            "footer.contact": "Contact Support: papikyanvahagn666@gmail.com or badasyan.mike4@gmail.com"
+        },
+        ru: {
+          "meta.title": "SRM - Социальная Республика Мидашес",
+          "language.label": "Язык",
+          "language.ariaLabel": "Выбор языка",
+          "language.english": "English",
+          "language.russian": "Русский",
+          "language.german": "Немецкий",
+          "language.armenian": "Армянский",
+          "nav.home": "Главная",
+          "nav.ranks": "Ранги",
+          "nav.records": "Рекорды",
+          "nav.about": "О нас",
+          "nav.support": "Поддержка",
+          "hero.flagAlt": "Флаг SRM",
+          "hero.title": "Социальная Республика Мидашес",
+          "hero.description": "SRM - это структурированная цивилизация, построенная на верности, дисциплине, авторитете и чести броневых рангов. Каждый гражданин поднимается выше благодаря силе, доверию и ответственности.",
+          "ranks.title": "Система рангов SRM",
+          "ranks.quartz.alt": "Кварц",
+          "ranks.quartz.title": "Кварцевый трим",
+          "ranks.quartz.description": "Высшая власть внутри SRM. Может управлять всеми рангами, кроме других участников Quartz.",
+          "ranks.diamondTrim.alt": "Алмазный трим",
+          "ranks.diamondTrim.title": "Алмазный трим",
+          "ranks.diamondTrim.description": "Командует всеми рангами ниже себя до уровня Iron Trim.",
+          "ranks.ironTrim.alt": "Железный трим",
+          "ranks.ironTrim.title": "Железный трим",
+          "ranks.ironTrim.description": "Участники Iron Trim командуют рангами ниже Iron.",
+          "ranks.netherite.alt": "Незерит",
+          "ranks.netherite.title": "Незеритовая броня",
+          "ranks.netherite.description": "Солдаты незерита могут командовать только гражданами в алмазной броне.",
+          "ranks.diamondArmor.alt": "Алмаз",
+          "ranks.diamondArmor.title": "Алмазная броня",
+          "ranks.diamondArmor.description": "Новейшие граждане SRM в начале своего пути.",
+          "records.title": "Рекорды республики",
+          "records.base.title": "База SRM",
+          "records.base.list": "1. VPistheking<br>2. Mikewillgetyou<br>3. MrRudolfB<br>4. Mvy864<br>5. Levon1111",
+          "records.pvp.title": "Рейтинг PvP (с базы)",
+          "records.pvp.list": "1. Mvy864<br>2. Mikewillgetyou<br>3. VPistheking<br>4. MrRudolfB<br>5. Levon1111",
+          "records.redstone.title": "Рейтинг по редстоуну (с базы)",
+          "records.redstone.list": "1. VPistheking<br>2. Mvy864<br>3. Mikewillgetyou<br>4. Levon1111<br>5. MrRudolfB",
+          "records.leadership.title": "Руководство",
+          "records.leadership.list": "1. (император) Президенты - VPistheking и Mikewillgetyou<br>2. (вице-император) Вице-президент - Levon1111<br>3. командир - Mikewillgetyou<br>4. Правопорядок - VPistheking-95% Mikewillgetyou-5%",
+          "records.resources.title": "Сборщики ресурсов (с базы)",
+          "records.resources.list": "1. VPistheking и Mikewillgetyou<br>2. VPistheking и Mikewillgetyou<br>3. Levon1111<br>4. Mvy864<br>5. MrRudolfB",
+          "promotion.title": "Протокол повышения",
+          "promotion.description": "Для повышения ранга обратитесь к одному из Императоров.",
+          "requirements.title": "Требования для входа на сервер",
+          "requirements.description": "Чтобы войти в наше королевство, вам нужно победить в PvP президента (Mikewillgetyou). После этого подойдите к другому президенту (VPistheking) и отправьте ему скриншот победы в Discord, чтобы он понял, стоит ли давать вам место в нашем королевстве. Также он может задать пару вопросов.",
+          "about.title": "О SRM",
+          "about.description": "Социальная Республика Мидашес символизирует порядок, единство, прогресс и силу. Каждый ранг несет ответственность.",
+          "join.title": "Присоединяйтесь",
+          "join.description": "Присоединяйтесь к SRM и поднимайтесь по рангам, доказывая свою силу, верность и преданность нашей республике. Название: Social Republic of Midashes (SRM), сервер публичный, поэтому вы можете найти его через поиск.",
+          "footer.copyright": "© Социальная Республика Мидашес | SRM",
+          "footer.help": "Нужна помощь или есть вопросы?",
+          "footer.contact": "Связаться с поддержкой: papikyanvahagn666@gmail.com или badasyan.mike4@gmail.com"
+        },
+        de: {
+            "meta.title": "SRM - Sozialistische Republik Midashes",
+            "language.label": "Sprache",
+            "language.ariaLabel": "Sprachauswahl",
+            "language.english": "English",
+            "language.russian": "Русский",
+            "language.german": "Deutsch",
+            "language.armenian": "Armenisch",
+            "nav.home": "Startseite",
+            "nav.ranks": "Ränge",
+            "nav.records": "Rekorde",
+            "nav.about": "Über uns",
+            "nav.support": "Support",
+            "hero.flagAlt": "SRM-Flagge",
+            "hero.title": "Sozialistische Republik Midashes",
+            "hero.description": "SRM ist eine strukturierte Zivilisation, die auf Loyalität, Disziplin, Autorität und der Ehre von Rüstungsrängen aufbaut. Jeder Bürger steigt durch Stärke, Vertrauen und Verantwortung auf.",
+            "ranks.title": "SRM-Rangsystem",
+            "ranks.quartz.alt": "Quarz",
+            "ranks.quartz.title": "Quarz-Besatz",
+            "ranks.quartz.description": "Die höchste Autorität innerhalb der SRM. Kann alle Ränge verwalten, außer andere Quartz-Mitglieder.",
+            "ranks.diamondTrim.alt": "Diamant-Besatz",
+            "ranks.diamondTrim.title": "Diamant-Besatz",
+            "ranks.diamondTrim.description": "Befehligt alle Ränge unter sich bis hin zum Iron Trim.",
+            "ranks.ironTrim.alt": "Eisen-Besatz",
+            "ranks.ironTrim.title": "Eisen-Besatz",
+            "ranks.ironTrim.description": "Mitglieder des Iron Trim befehligen alle Ränge unter Eisen.",
+            "ranks.netherite.alt": "Netherit",
+            "ranks.netherite.title": "Netherit-Rüstung",
+            "ranks.netherite.description": "Netherit-Soldaten können nur Bürgern in Diamant-Rüstung Befehle erteilen.",
+            "ranks.diamondArmor.alt": "Diamant",
+            "ranks.diamondArmor.title": "Diamant-Rüstung",
+            "ranks.diamondArmor.description": "Die neuesten Bürger der SRM am Anfang ihres Weges.",
+            "records.title": "Rekorde der Republik",
+            "records.base.title": "SRM-Basis",
+            "records.base.list": "1. VPistheking<br>2. Mikewillgetyou<br>3. MrRudolfB<br>4. Mvy864<br>5. Levon1111",
+            "records.pvp.title": "PvP-Ranking (von der Basis)",
+            "records.pvp.list": "1. Mvy864<br>2. Mikewillgetyou<br>3. VPistheking<br>4. MrRudolfB<br>5. Levon1111",
+            "records.redstone.title": "Redstone-Ranking (von der Basis)",
+            "records.redstone.list": "1. VPistheking<br>2. Mvy864<br>3. Mikewillgetyou<br>4. Levon1111<br>5. MrRudolfB",
+            "records.leadership.title": "Führung",
+            "records.leadership.list": "1. (Kaiser) Präsidenten - VPistheking und Mikewillgetyou<br>2. (Vize-Kaiser) Vizepräsident - Levon1111<br>3. Kommandant - Mikewillgetyou<br>4. Strafverfolgung - VPistheking-95% Mikewillgetyou-5%",
+            "records.resources.title": "Ressourcensammler (von der Basis)",
+            "records.resources.list": "1. VPistheking und Mikewillgetyou<br>2. VPistheking und Mikewillgetyou<br>3. Levon1111<br>4. Mvy864<br>5. MrRudolfB",
+            "promotion.title": "Beförderungsprotokoll",
+            "promotion.description": "Wende dich für eine Rangbeförderung an einen der Kaiser.",
+            "requirements.title": "Anforderungen für den Serverbeitritt",
+            "requirements.description": "Um unser Königreich zu betreten, musst du den Präsidenten (Mikewillgetyou) im PvP besiegen. Geh danach zum anderen Präsidenten (VPistheking) und schicke ihm einen Screenshot deines Sieges auf Discord, damit er entscheiden kann, ob du einen Platz in unserem Königreich verdient hast. Er stellt dir eventuell auch ein paar Fragen.",
+            "about.title": "Über SRM",
+            "about.description": "Die Sozialistische Republik Midashes steht für Ordnung, Einheit, Fortschritt und Stärke. Jeder Rang trägt Verantwortung.",
+            "join.title": "Tritt bei",
+            "join.description": "Tritt der SRM bei und steige in den Rängen auf, indem du deine Stärke, Loyalität und Hingabe für unsere Republik beweist. Name: Social Republic of Midashes (SRM). Der Server ist öffentlich, sodass du ihn über die Suche finden kannst.",
+            "footer.copyright": "© Sozialistische Republik Midashes | SRM",
+            "footer.help": "Brauchst du Hilfe oder hast du Fragen?",
+            "footer.contact": "Support kontaktieren: papikyanvahagn666@gmail.com oder badasyan.mike4@gmail.com"
+        },
+        hy: {
+            "meta.title": "SRM - Միդաշեսի Սոցիալական Հանրապետություն",
+            "language.label": "Լեզու",
+            "language.ariaLabel": "Լեզվի ընտրություն",
+            "language.english": "English",
+            "language.russian": "Русский",
+            "language.german": "Deutsch",
+            "language.armenian": "Հայերեն",
+            "nav.home": "Գլխավոր",
+            "nav.ranks": "Կոչումներ",
+            "nav.records": "Ռեկորդներ",
+            "nav.about": "Մեր մասին",
+            "nav.support": "Աջակցություն",
+            "hero.flagAlt": "SRM դրոշ",
+            "hero.title": "Միդաշեսի Սոցիալական Հանրապետություն",
+            "hero.description": "SRM-ը կառուցված է հավատարմության, կարգապահության, հեղինակության և զրահային կոչումների պատվի վրա: Յուրաքանչյուր քաղաքացի բարձրանում է ուժի, վստահության և պատասխանատվության շնորհիվ:",
+            "ranks.title": "SRM կոչումների համակարգ",
+            "ranks.quartz.alt": "Կվարց",
+            "ranks.quartz.title": "Կվարցե եզր",
+            "ranks.quartz.description": "SRM-ի ներսում ամենաբարձր հեղինակությունը: Կարող է կառավարել բոլոր կոչումները, բացի այլ Կվարց անդամներից:",
+            "ranks.diamondTrim.alt": "Ադամանդե եզր",
+            "ranks.diamondTrim.title": "Ադամանդե եզր",
+            "ranks.diamondTrim.description": "Բոլոր կոչումները կառավարում է մինչև Երկաթե եզր:",
+            "ranks.ironTrim.alt": "Երկաթե եզր",
+            "ranks.ironTrim.title": "Երկաթե եզր",
+            "ranks.ironTrim.description": "Երկաթե եզրի անդամները կառավարում են երկաթից ցածր կոչումները:",
+            "ranks.netherite.alt": "Նեթերիտ",
+            "ranks.netherite.title": "Նեթերիտե զրահ",
+            "ranks.netherite.description": "Նեթերիտե զինվորները կարող են հրամայել միայն ադամանդե զրահ ունեցող քաղաքացիներին:",
+            "ranks.diamondArmor.alt": "Ադամանդ",
+            "ranks.diamondArmor.title": "Ադամանդե զրահ",
+            "ranks.diamondArmor.description": "SRM-ի նորագույն քաղաքացիները իրենց ճանապարհի սկզբում:",
+            "records.title": "Հանրապետության ռեկորդներ",
+            "records.base.title": "SRM բազա",
+            "records.base.list": "1. VPistheking<br>2. Mikewillgetyou<br>3. MrRudolfB<br>4. Mvy864<br>5. Levon1111",
+            "records.pvp.title": "PvP վարկանիշ (բազայից)",
+            "records.pvp.list": "1. Mvy864<br>2. Mikewillgetyou<br>3. VPistheking<br>4. MrRudolfB<br>5. Levon1111",
+            "records.redstone.title": "Redstone վարկանիշ (բազայից)",
+            "records.redstone.list": "1. VPistheking<br>2. Mvy864<br>3. Mikewillgetyou<br>4. Levon1111<br>5. MrRudolfB",
+            "records.leadership.title": "Առաջնորդություն",
+            "records.leadership.list": "1. (իմպերատոր) Նախագահներ - VPistheking և Mikewillgetyou<br>2. (փոխ-իմպերատոր) Փոխնախագահ - Levon1111<br>3. հրամանատար - Mikewillgetyou<br>4. օրենքի պաշտպանություն - VPistheking-95% Mikewillgetyou-5%",
+            "records.resources.title": "Ռեսուրսների հավաքողներ (բազայից)",
+            "records.resources.list": "1. VPistheking և Mikewillgetyou<br>2. VPistheking և Mikewillgetyou<br>3. Levon1111<br>4. Mvy864<br>5. MrRudolfB",
+            "promotion.title": "Բարձրացման արձանագրություն",
+            "promotion.description": "Կոչման բարձրացման համար դիմեք այդ Իմպերատորներից մեկին:",
+            "requirements.title": "Սերվեր մուտք գործելու պահանջներ",
+            "requirements.description": "Մեր թագավորություն մուտք գործելու համար պետք է կարողանաք հաղթել PvP-ում նախագահին (Mikewillgetyou): Դրանից հետո մոտեցեք մյուս նախագահին (VPistheking) և նրան ուղարկեք հաղթանակի սքրինշոտը Discord-ով, որպեսզի նա հասկանա, թե արդյոք պետք է տա ձեզ տեղ մեր թագավորությունում, թե ոչ: Նա կարող է նաև մի քանի հարց տալ:",
+            "about.title": "SRM-ի մասին",
+            "about.description": "Միդաշեսի Սոցիալական Հանրապետությունը ներկայացնում է կարգը, միասնությունը, առաջընթացը և ուժը: Յուրաքանչյուր կոչում կրում է պատասխանատվություն:",
+            "join.title": "Միացեք մեզ",
+            "join.description": "Միացեք SRM-ին և բարձրացեք կոչումներով՝ ապացնելով ձեր ուժը, հավատարմությունը և նվիրվածությունը մեր հանրապետությանը: Անունը՝ Social Republic of Midashes (SRM), սերվերը հանրային է, ուստի կարող եք գտնել այն որոնման միջոցով:",
+            "footer.copyright": "© Միդաշեսի Սոցիալական Հանրապետություն | SRM",
+            "footer.help": "Աջակցության կարիք ունե՞ք կամ հարցեր ունե՞ք:",
+            "footer.contact": "Կապվեք աջակցության հետ՝ papikyanvahagn666@gmail.com կամ badasyan.mike4@gmail.com"
+        },
+        sr: {
+            "meta.title": "SRM - Socijalna Republika Midashes",
+            "language.label": "Jezik",
+            "language.ariaLabel": "Birač jezika",
+            "language.english": "English",
+            "language.russian": "Русский",
+            "language.german": "Deutsch",
+            "language.armenian": "Հայերեն",
+            "language.serbian": "Srpski",
+            "language.spanish": "Español",
+            "language.french": "Français",
+            "language.portuguese": "Português",
+            "language.italian": "Italiano",
+            "nav.home": "Početna",
+            "nav.ranks": "Rangovi",
+            "nav.records": "Rekordi",
+            "nav.about": "O nama",
+            "nav.support": "Podrška",
+            "hero.flagAlt": "SRM zastava",
+            "hero.title": "Socijalna Republika Midashes",
+            "hero.description": "SRM je uređena civilizacija izgrađena na lojalnosti, disciplini, autoritetu i časti rangova oklopa. Svaki građanin napreduje kroz snagu, poverenje i odgovornost.",
+            "ranks.title": "SRM sistem rangova",
+            "ranks.quartz.alt": "Kvarc",
+            "ranks.quartz.title": "Kvarcni trim",
+            "ranks.quartz.description": "Najviši autoritet u SRM-u. Može kontrolisati svaki rang osim drugih članova Kvarca.",
+            "ranks.diamondTrim.alt": "Dijamantski trim",
+            "ranks.diamondTrim.title": "Dijamantski trim",
+            "ranks.diamondTrim.description": "Komanduje svim rangovima ispod sebe do Gvozdenog trima.",
+            "ranks.ironTrim.alt": "Gvozdeni trim",
+            "ranks.ironTrim.title": "Gvozdeni trim",
+            "ranks.ironTrim.description": "Članovi Gvozdenog trima komanduju rangovima ispod Gvožđa.",
+            "ranks.netherite.alt": "Netherit",
+            "ranks.netherite.title": "Netheritni oklop",
+            "ranks.netherite.description": "Netheritni vojnici mogu komandovati samo građanima sa dijamantskim oklopom.",
+            "ranks.diamondArmor.alt": "Dijamant",
+            "ranks.diamondArmor.title": "Dijamantski oklop",
+            "ranks.diamondArmor.description": "Najnoviji građani SRM-a na početku svog puta.",
+            "records.title": "Rekordi Republike",
+            "records.base.title": "Baza SRM-a",
+            "records.base.list": "1. VPistheking<br>2. Mikewillgetyou<br>3. MrRudolfB<br>4. Mvy864<br>5. Levon1111",
+            "records.pvp.title": "PvP rang-lista (iz baze)",
+            "records.pvp.list": "1. Mvy864<br>2. Mikewillgetyou<br>3. VPistheking<br>4. MrRudolfB<br>5. Levon1111",
+            "records.redstone.title": "Redstone rang-lista (iz baze)",
+            "records.redstone.list": "1. VPistheking<br>2. Mvy864<br>3. Mikewillgetyou<br>4. Levon1111<br>5. MrRudolfB",
+            "records.leadership.title": "Vođstvo",
+            "records.leadership.list": "1. (imperator) Predsednici - VPistheking i Mikewillgetyou<br>2. (vice imperator) Potpredsednici - Levon1111<br>3. komandant - Mikewillgetyou<br>4. Sprovođenje zakona - VPistheking-95% Mikewillgetyou-5%",
+            "records.resources.title": "Sakupljači resursa (iz baze)",
+            "records.resources.list": "1. VPistheking i Mikewillgetyou<br>2. VPistheking i Mikewillgetyou<br>3. Levon1111<br>4. Mvy864<br>5. MrRudolfB",
+            "promotion.title": "Protokol unapređenja",
+            "promotion.description": "Za unapređenje ranga, idi kod jednog od Imperatora.",
+            "requirements.title": "Uslovi za ulazak na server",
+            "requirements.description": "Da uđeš u naše kraljevstvo, moraš biti sposoban da pobediš predsednika (Mikewillgetyou) u PvP-u. Posle toga treba da odeš kod drugog predsednika (VPistheking) i pošalješ mu screenshot pobede preko Discorda, da bi mogao da razume da li treba da ti da mesto u našem kraljevstvu ili ne, a možda će postaviti nekoliko pitanja.",
+            "about.title": "O SRM-u",
+            "about.description": "Socijalna Republika Midashes predstavlja red, jedinstvo, napredak i moć. Svaki rang nosi odgovornost.",
+            "join.title": "Pridruži nam se",
+            "join.description": "Pridruži se SRM-u i napreduj kroz rangove dokazujeći svoju snagu, lojalnost i posvećenost našoj republici. Ime: Social Republic of Midashes (SRM), server je javni pa ga možeš pronaći pretragom.",
+            "footer.copyright": "© Socijalna Republika Midashes | SRM",
+            "footer.help": "Treba ti pomoć ili imaš pitanja?",
+            "footer.contact": "Kontaktiraj podršku: papikyanvahagn666@gmail.com ili badasyan.mike4@gmail.com"
+        },        es: {
+            "meta.title": "SRM - República Social de Midashes",
+            "language.label": "Idioma",
+            "language.ariaLabel": "Selector de idioma",
+            "language.english": "English",
+            "language.russian": "Русский",
+            "language.german": "Deutsch",
+            "language.armenian": "Հայերեն",
+            "language.spanish": "Español",
+            "nav.home": "Inicio",
+            "nav.ranks": "Rangos",
+            "nav.records": "Récords",
+            "nav.about": "Acerca de",
+            "nav.support": "Soporte",
+            "hero.flagAlt": "Bandera SRM",
+            "hero.title": "República Social de Midashes",
+            "hero.description": "SRM es una civilización estructurada basada en la lealtad, disciplina, autoridad y el honor de los rangos de armadura. Cada ciudadano asciende a través de la fuerza, confianza y responsabilidad.",
+            "ranks.title": "Sistema de rangos SRM",
+            "ranks.quartz.alt": "Cuarzo",
+            "ranks.quartz.title": "Recorte de Cuarzo",
+            "ranks.quartz.description": "La máxima autoridad dentro de SRM. Puede controlar todos los rangos excepto otros miembros de Cuarzo.",
+            "ranks.diamondTrim.alt": "Recorte de Diamante",
+            "ranks.diamondTrim.title": "Recorte de Diamante",
+            "ranks.diamondTrim.description": "Comanda todos los rangos debajo de ellos hasta el Recorte de Hierro.",
+            "ranks.ironTrim.alt": "Recorte de Hierro",
+            "ranks.ironTrim.title": "Recorte de Hierro",
+            "ranks.ironTrim.description": "Los miembros del Recorte de Hierro comandan rangos debajo de Hierro.",
+            "ranks.netherite.alt": "Netherita",
+            "ranks.netherite.title": "Armadura de Netherita",
+            "ranks.netherite.description": "Los soldados de netherita solo pueden comandar ciudadanos con armadura de diamante.",
+            "ranks.diamondArmor.alt": "Diamante",
+            "ranks.diamondArmor.title": "Armadura de Diamante",
+            "ranks.diamondArmor.description": "Los ciudadanos más nuevos de SRM al inicio de su viaje.",
+            "records.title": "Récords de la República",
+            "records.base.title": "La base de SRM",
+            "records.base.list": "1. VPistheking<br>2. Mikewillgetyou<br>3. MrRudolfB<br>4. Mvy864<br>5. Levon1111",
+            "records.pvp.title": "Clasificación PvP (desde la base)",
+            "records.pvp.list": "1. Mvy864<br>2. Mikewillgetyou<br>3. VPistheking<br>4. MrRudolfB<br>5. Levon1111",
+            "records.redstone.title": "Clasificación de Redstone (desde la base)",
+            "records.redstone.list": "1. VPistheking<br>2. Mvy864<br>3. Mikewillgetyou<br>4. Levon1111<br>5. MrRudolfB",
+            "records.leadership.title": "Liderazgo",
+            "records.leadership.list": "1. (imperador) Presidentes - VPistheking y Mikewillgetyou<br>2. (vice imperador) Vicepresidentes - Levon1111<br>3. comandante - Mikewillgetyou<br>4. Aplicación de la ley - VPistheking-95% Mikewillgetyou-5%",
+            "records.resources.title": "Recolectores de recursos (desde la base)",
+            "records.resources.list": "1. VPistheking y Mikewillgetyou<br>2. VPistheking y Mikewillgetyou<br>3. Levon1111<br>4. Mvy864<br>5. MrRudolfB",
+            "promotion.title": "Protocolo de promoción",
+            "promotion.description": "Para un ascenso de rango, ve a uno de los Emperadores.",
+            "requirements.title": "Requisitos para entrar al servidor",
+            "requirements.description": "Para entrar a nuestro reino necesitas poder ganar en PvP al presidente (Mikewillgetyou). Después de esto necesitas ir al otro presidente (VPistheking) y enviarle la captura de la victoria por Discord, para que pueda entender si debe darte un lugar en nuestro reino o no, y podría hacer un par de preguntas.",
+            "about.title": "Acerca de SRM",
+            "about.description": "La República Social de Midashes representa orden, unidad, progreso y poder. Cada rango conlleva responsabilidad.",
+            "join.title": "Únete a nosotros",
+            "join.description": "Únete a SRM y asciende en los rangos demostrando tu fuerza, lealtad y dedicación a nuestra república. Nombre: Social Republic of Midashes (SRM), el servidor es público así que puedes encontrarlo buscando.",
+            "footer.copyright": "© República Social de Midashes | SRM",
+            "footer.help": "¿Necesitas ayuda o tienes preguntas?",
+            "footer.contact": "Contactar soporte: papikyanvahagn666@gmail.com o badasyan.mike4@gmail.com"
+        },
+        fr: {
+            "meta.title": "SRM - République Sociale de Midashes",
+            "language.label": "Langue",
+            "language.ariaLabel": "Sélecteur de langue",
+            "language.english": "English",
+            "language.russian": "Русский",
+            "language.german": "Deutsch",
+            "language.armenian": "Հայերեն",
+            "language.spanish": "Español",
+            "language.french": "Français",
+            "nav.home": "Accueil",
+            "nav.ranks": "Rangs",
+            "nav.records": "Records",
+            "nav.about": "À propos",
+            "nav.support": "Support",
+            "hero.flagAlt": "Drapeau SRM",
+            "hero.title": "République Sociale de Midashes",
+            "hero.description": "SRM est une civilisation structurée basée sur la loyauté, la discipline, l'autorité et l'honneur des rangs d'armure. Chaque citoyen s'élève par la force, la confiance et la responsabilité.",
+            "ranks.title": "Système de rangs SRM",
+            "ranks.quartz.alt": "Quartz",
+            "ranks.quartz.title": "Bordure Quartz",
+            "ranks.quartz.description": "La plus haute autorité au sein de SRM. Peut contrôler tous les rangs sauf les autres membres Quartz.",
+            "ranks.diamondTrim.alt": "Bordure Diamant",
+            "ranks.diamondTrim.title": "Bordure Diamant",
+            "ranks.diamondTrim.description": "Commande tous les rangs en dessous jusqu'à la Bordure Fer.",
+            "ranks.ironTrim.alt": "Bordure Fer",
+            "ranks.ironTrim.title": "Bordure Fer",
+            "ranks.ironTrim.description": "Les membres de la Bordure Fer commandent les rangs en dessous du Fer.",
+            "ranks.netherite.alt": "Netherite",
+            "ranks.netherite.title": "Armure Netherite",
+            "ranks.netherite.description": "Les soldats netherite ne peuvent commander que les citoyens en armure diamant.",
+            "ranks.diamondArmor.alt": "Diamant",
+            "ranks.diamondArmor.title": "Armure Diamant",
+            "ranks.diamondArmor.description": "Les plus nouveaux citoyens de SRM au début de leur parcours.",
+            "records.title": "Records de la République",
+            "records.base.title": "La base de SRM",
+            "records.base.list": "1. VPistheking<br>2. Mikewillgetyou<br>3. MrRudolfB<br>4. Mvy864<br>5. Levon1111",
+            "records.pvp.title": "Classement PvP (depuis la base)",
+            "records.pvp.list": "1. Mvy864<br>2. Mikewillgetyou<br>3. VPistheking<br>4. MrRudolfB<br>5. Levon1111",
+            "records.redstone.title": "Classement Redstone (depuis la base)",
+            "records.redstone.list": "1. VPistheking<br>2. Mvy864<br>3. Mikewillgetyou<br>4. Levon1111<br>5. MrRudolfB",
+            "records.leadership.title": "Direction",
+            "records.leadership.list": "1. (empereur) Présidents - VPistheking et Mikewillgetyou<br>2. (vice-empereur) Vice-présidents - Levon1111<br>3. commandant - Mikewillgetyou<br>4. Application de la loi - VPistheking-95% Mikewillgetyou-5%",
+            "records.resources.title": "Collecteurs de ressources (depuis la base)",
+            "records.resources.list": "1. VPistheking et Mikewillgetyou<br>2. VPistheking et Mikewillgetyou<br>3. Levon1111<br>4. Mvy864<br>5. MrRudolfB",
+            "promotion.title": "Protocole de promotion",
+            "promotion.description": "Pour une promotion de rang, allez voir l'un des Empereurs.",
+            "requirements.title": "Exigences pour entrer sur le serveur",
+            "requirements.description": "Pour entrer dans notre royaume, vous devez être capable de gagner en PvP contre le président (Mikewillgetyou). Après cela, allez voir l'autre président (VPistheking) et envoyez-lui une capture d'écran de votre victoire via Discord, afin qu'il puisse comprendre s'il doit vous donner une place dans notre royaume ou non. Il peut poser quelques questions.",
+            "about.title": "À propos de SRM",
+            "about.description": "La République Sociale de Midashes représente l'ordre, l'unité, le progrès et la puissance. Chaque rang porte une responsabilité.",
+            "join.title": "Rejoignez-nous",
+            "join.description": "Rejoignez SRM et montez dans les rangs en prouvant votre force, votre loyauté et votre dévouement à notre république. Nom : Social Republic of Midashes (SRM), le serveur est public donc vous pouvez le trouver en recherchant.",
+            "footer.copyright": "© République Sociale de Midashes | SRM",
+            "footer.help": "Besoin d'aide ou avez-vous des questions ?",
+            "footer.contact": "Contacter le support : papikyanvahagn666@gmail.com ou badasyan.mike4@gmail.com"
+        },
+        pt: {
+            "meta.title": "SRM - República Social de Midashes",
+            "language.label": "Idioma",
+            "language.ariaLabel": "Seletor de idioma",
+            "language.english": "English",
+            "language.russian": "Русский",
+            "language.german": "Deutsch",
+            "language.armenian": "Հայերեն",
+            "language.spanish": "Español",
+            "language.french": "Français",
+            "language.portuguese": "Português",
+            "nav.home": "Início",
+            "nav.ranks": "Patentes",
+            "nav.records": "Registros",
+            "nav.about": "Sobre",
+            "nav.support": "Suporte",
+            "hero.flagAlt": "Bandeira SRM",
+            "hero.title": "República Social de Midashes",
+            "hero.description": "SRM é uma civilização estruturada construída sobre lealdade, disciplina, autoridade e a honra das patentes de armadura. Cada cidadão sobe através da força, confiança e responsabilidade.",
+            "ranks.title": "Sistema de Patentes SRM",
+            "ranks.quartz.alt": "Quartzo",
+            "ranks.quartz.title": "Borda de Quartzo",
+            "ranks.quartz.description": "A mais alta autoridade dentro do SRM. Pode controlar todas as patentes exceto outros membros de Quartzo.",
+            "ranks.diamondTrim.alt": "Borda de Diamante",
+            "ranks.diamondTrim.title": "Borda de Diamante",
+            "ranks.diamondTrim.description": "Comanda todas as patentes abaixo até a Borda de Ferro.",
+            "ranks.ironTrim.alt": "Borda de Ferro",
+            "ranks.ironTrim.title": "Borda de Ferro",
+            "ranks.ironTrim.description": "Membros da Borda de Ferro comandam patentes abaixo de Ferro.",
+            "ranks.netherite.alt": "Netherita",
+            "ranks.netherite.title": "Armadura de Netherita",
+            "ranks.netherite.description": "Soldados de netherita só podem comandar cidadãos com armadura de diamante.",
+            "ranks.diamondArmor.alt": "Diamante",
+            "ranks.diamondArmor.title": "Armadura de Diamante",
+            "ranks.diamondArmor.description": "Os mais novos cidadãos do SRM no início de sua jornada.",
+            "records.title": "Registros da República",
+            "records.base.title": "A base do SRM",
+            "records.base.list": "1. VPistheking<br>2. Mikewillgetyou<br>3. MrRudolfB<br>4. Mvy864<br>5. Levon1111",
+            "records.pvp.title": "Classificação PvP (da base)",
+            "records.pvp.list": "1. Mvy864<br>2. Mikewillgetyou<br>3. VPistheking<br>4. MrRudolfB<br>5. Levon1111",
+            "records.redstone.title": "Classificação Redstone (da base)",
+            "records.redstone.list": "1. VPistheking<br>2. Mvy864<br>3. Mikewillgetyou<br>4. Levon1111<br>5. MrRudolfB",
+            "records.leadership.title": "Liderança",
+            "records.leadership.list": "1. (imperador) Presidentes - VPistheking e Mikewillgetyou<br>2. (vice imperador) Vice-presidentes - Levon1111<br>3. comandante - Mikewillgetyou<br>4. Aplicação da lei - VPistheking-95% Mikewillgetyou-5%",
+            "records.resources.title": "Coletores de recursos (da base)",
+            "records.resources.list": "1. VPistheking e Mikewillgetyou<br>2. VPistheking e Mikewillgetyou<br>3. Levon1111<br>4. Mvy864<br>5. MrRudolfB",
+            "promotion.title": "Protocolo de Promoção",
+            "promotion.description": "Para uma promoção de patente, vá a um dos Imperadores.",
+            "requirements.title": "Requisitos para entrar no servidor",
+            "requirements.description": "Para entrar em nosso reino você precisa ser capaz de vencer no PvP o presidente (Mikewillgetyou). Depois disso você precisa ir ao outro presidente (VPistheking) e enviar a ele o print da vitória pelo Discord, para que ele possa entender se deve dar a você o lugar em nosso reino ou não, e ele pode fazer algumas perguntas.",
+            "about.title": "Sobre SRM",
+            "about.description": "A República Social de Midashes representa ordem, unidade, progresso e poder. Cada patente carrega responsabilidade.",
+            "join.title": "Junte-se a nós",
+            "join.description": "Junte-se ao SRM e suba nas patentes provando sua força, lealdade e dedicação à nossa república. Nome: Social Republic of Midashes (SRM), o servidor é público então você pode encontrá-lo pesquisando.",
+            "footer.copyright": "© República Social de Midashes | SRM",
+            "footer.help": "Precisa de ajuda ou tem perguntas?",
+            "footer.contact": "Contatar suporte: papikyanvahagn666@gmail.com ou badasyan.mike4@gmail.com"
+        },
+        it: {
+            "meta.title": "SRM - Repubblica Sociale di Midashes",
+            "language.label": "Lingua",
+            "language.ariaLabel": "Selettore lingua",
+            "language.english": "English",
+            "language.russian": "Русский",
+            "language.german": "Deutsch",
+            "language.armenian": "Հայերեն",
+            "language.spanish": "Español",
+            "language.french": "Français",
+            "language.portuguese": "Português",
+            "language.italian": "Italiano",
+            "nav.home": "Home",
+            "nav.ranks": "Gradi",
+            "nav.records": "Record",
+            "nav.about": "Chi siamo",
+            "nav.support": "Supporto",
+            "hero.flagAlt": "Bandiera SRM",
+            "hero.title": "Repubblica Sociale di Midashes",
+            "hero.description": "SRM è una civiltà strutturata costruita sulla lealtà, disciplina, autorità e l'onore dei gradi di armatura. Ogni cittadino sale attraverso forza, fiducia e responsabilità.",
+            "ranks.title": "Sistema di gradi SRM",
+            "ranks.quartz.alt": "Quarzo",
+            "ranks.quartz.title": "Bordo Quarzo",
+            "ranks.quartz.description": "La massima autorità all'interno di SRM. Può controllare tutti i gradi eccetto altri membri Quarzo.",
+            "ranks.diamondTrim.alt": "Bordo Diamante",
+            "ranks.diamondTrim.title": "Bordo Diamante",
+            "ranks.diamondTrim.description": "Comanda tutti i gradi sotto di loro fino al Bordo Ferro.",
+            "ranks.ironTrim.alt": "Bordo Ferro",
+            "ranks.ironTrim.title": "Bordo Ferro",
+            "ranks.ironTrim.description": "I membri del Bordo Ferro comandano gradi sotto il Ferro.",
+            "ranks.netherite.alt": "Netherite",
+            "ranks.netherite.title": "Armatura Netherite",
+            "ranks.netherite.description": "I soldati netherite possono comandare solo cittadini con armatura diamante.",
+            "ranks.diamondArmor.alt": "Diamante",
+            "ranks.diamondArmor.title": "Armatura Diamante",
+            "ranks.diamondArmor.description": "I cittadini più recenti di SRM all'inizio del loro viaggio.",
+            "records.title": "Record della Repubblica",
+            "records.base.title": "La base di SRM",
+            "records.base.list": "1. VPistheking<br>2. Mikewillgetyou<br>3. MrRudolfB<br>4. Mvy864<br>5. Levon1111",
+            "records.pvp.title": "Classifica PvP (dalla base)",
+            "records.pvp.list": "1. Mvy864<br>2. Mikewillgetyou<br>3. VPistheking<br>4. MrRudolfB<br>5. Levon1111",
+            "records.redstone.title": "Classifica Redstone (dalla base)",
+            "records.redstone.list": "1. VPistheking<br>2. Mvy864<br>3. Mikewillgetyou<br>4. Levon1111<br>5. MrRudolfB",
+            "records.leadership.title": "Leadership",
+            "records.leadership.list": "1. (imperatore) Presidenti - VPistheking e Mikewillgetyou<br>2. (vice imperatore) Vicepresidenti - Levon1111<br>3. comandante - Mikewillgetyou<br>4. Applicazione della legge - VPistheking-95% Mikewillgetyou-5%",
+            "records.resources.title": "Raccoglitori di risorse (dalla base)",
+            "records.resources.list": "1. VPistheking e Mikewillgetyou<br>2. VPistheking e Mikewillgetyou<br>3. Levon1111<br>4. Mvy864<br>5. MrRudolfB",
+            "promotion.title": "Protocollo di promozione",
+            "promotion.description": "Per una promozione di grado, vai a uno degli Imperatori.",
+            "requirements.title": "Requisiti per entrare nel server",
+            "requirements.description": "Per entrare nel nostro regno devi essere in grado di vincere in PvP contro il presidente (Mikewillgetyou). Dopo questo devi andare dall'altro presidente (VPistheking) e inviargli lo screenshot della vittoria via Discord, così può capire se deve darti un posto nel nostro regno o no, e potrebbe fare qualche domanda.",
+            "about.title": "Chi siamo SRM",
+            "about.description": "La Repubblica Sociale di Midashes rappresenta ordine, unità, progresso e potere. Ogni grado porta responsabilità.",
+            "join.title": "Unisciti a noi",
+            "join.description": "Unisciti a SRM e sali nei gradi dimostrando la tua forza, lealtà e dedizione alla nostra repubblica. Nome: Social Republic of Midashes (SRM), il server è pubblico quindi puoi trovarlo cercando.",
+            "footer.copyright": "© Repubblica Sociale di Midashes | SRM",
+            "footer.help": "Hai bisogno di assistenza o hai domande?",
+            "footer.contact": "Contatta supporto: papikyanvahagn666@gmail.com o badasyan.mike4@gmail.com"
+        }
+    };
+
+    /**
+     * @param {string} lang
+     * @param {string} key
+     * @returns {string}
+     */
+    function translate(lang, key) {
+        return (translations[lang] && translations[lang][key]) || translations.en[key] || key;
+    }
+
+    /** @param {string} lang */
+    function applyTranslations(lang) {
+        document.documentElement.lang = lang;
+        document.title = translate(lang, "meta.title");
+
+        document.querySelectorAll("[data-i18n]").forEach((element) => {
+            element.textContent = translate(lang, element.getAttribute("data-i18n") || "");
+        });
+
+        document.querySelectorAll("[data-i18n-html]").forEach((element) => {
+            if (element instanceof HTMLElement) {
+                element.innerHTML = translate(lang, element.getAttribute("data-i18n-html") || "");
+            }
+        });
+
+        document.querySelectorAll("[data-i18n-alt]").forEach((element) => {
+            if (element instanceof HTMLImageElement) {
+                element.alt = translate(lang, element.getAttribute("data-i18n-alt") || "");
+            }
+        });
+
+        document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => {
+            element.setAttribute("aria-label", translate(lang, element.getAttribute("data-i18n-aria-label") || ""));
+        });
+
+        localStorage.setItem("srm_lang", lang);
+    }
+
+    const languageSelect = document.getElementById("language-select");
+    const storedLanguage = localStorage.getItem("srm_lang");
+    const initialLanguage = storedLanguage && translations[storedLanguage] ? storedLanguage : "en";
+
+    if (languageSelect instanceof HTMLSelectElement) {
+        languageSelect.value = initialLanguage;
+        applyTranslations(initialLanguage);
+
+        languageSelect.addEventListener("change", () => {
+            applyTranslations(languageSelect.value);
+        });
+    }
+
+    // Scroll Animation
+
+    const hiddenElements = document.querySelectorAll('.hidden');
+
+    const observer = new IntersectionObserver((entries)=>{
+
+        entries.forEach((entry)=>{
+
+            if(entry.isIntersecting){
+
+                entry.target.classList.add('show');
+
+            }
+
+        });
+
+    });
+
+    hiddenElements.forEach((el)=>observer.observe(el));
+
+</script>
+</body>
+</html>
